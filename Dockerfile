@@ -15,7 +15,8 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 
 # Copia el JAR construido desde la etapa anterior
-COPY --from=build /app/target/consulta-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/consulta.jar app.jar
 
 # Define el comando de inicio para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "/app.jar"]
+
