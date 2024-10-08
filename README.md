@@ -1,1 +1,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
