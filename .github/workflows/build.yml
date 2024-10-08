@@ -12,13 +12,14 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3  # Actualización a v3
+      - uses: actions/checkout@v3
       - name: Set up JDK
-        uses: actions/setup-java@v3  # Actualización a v3
+        uses: actions/setup-java@v3
         with:
+          distribution: 'temurin'  # Especifica la distribución (temurin)
           java-version: '17'  # Usar JDK 17
       - name: Cache Maven packages
-        uses: actions/cache@v3  # Actualización a v3
+        uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -31,21 +32,22 @@ jobs:
     name: SonarCloud analysis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3  # Actualización a v3
+      - uses: actions/checkout@v3
       - name: Set up JDK
-        uses: actions/setup-java@v3  # Actualización a v3
+        uses: actions/setup-java@v3
         with:
+          distribution: 'temurin'  # Especifica la distribución (temurin)
           java-version: '17'
 
       - name: Cache SonarCloud packages
-        uses: actions/cache@v3  # Actualización a v3
+        uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache Maven packages
-        uses: actions/cache@v3  # Actualización a v3
+        uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -58,7 +60,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
-    needs: sonar  # Cambié la indentación aquí para que esté fuera del "sonar" job
+    needs: sonar
     name: Build
     runs-on: ubuntu-latest
 
@@ -69,7 +71,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: 'temurin'  # Especifica la distribución (temurin)
           java-version: '17'
 
       - name: Cache Maven packages
