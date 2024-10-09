@@ -129,5 +129,13 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-
+      - name: Deploy to Elastic Beanstalk
+        run: |
+          zip -r my-app.zip .
+          aws elasticbeanstalk create-application-version --application-name "Despliegue3" \
+          --version-label "v1" \
+          --source-bundle S3Bucket="despliegue3-app-bucket",S3Key="my-app.zip"
+          aws elasticbeanstalk update-environment --application-name "Despliegue3" \
+            --environment-name "Despliegue3-env" \
+            --version-label "v1"
 
