@@ -16,9 +16,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Checkout code from GitHub
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # 2. Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -26,21 +28,39 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      # 3. Set up Java environment (adjust to your Java version if necessary)
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
 
+      # 4. Build project using Maven
       - name: Build with Maven
         run: mvn clean install
 
+      # 5. Upload the generated JAR as an artifact (this allows you to download it if needed)
+      - name: Upload JAR as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-app-jar
+          path: target/*.jar
+
+      # 6. Zip the application for deployment
+      - name: Zip application
+        run: zip -r my-app.zip .
+
+      # 7. Upload the zipped application to S3
+      - name: Upload to S3
+        run: |
+          aws s3 cp my-app.zip s3://despliegue3-bucket/my-app.zip
+
+      # 8. Deploy the JAR to Elastic Beanstalk
       - name: Deploy to Elastic Beanstalk
         run: |
-          zip -r my-app.zip .
           aws elasticbeanstalk create-application-version --application-name "Despliegue3" \
-          --version-label "v1" \
-          --source-bundle S3Bucket="despliegue3-app-bucket",S3Key="my-app.zip"
+            --version-label "v1-${{ github.sha }}" \
+            --source-bundle S3Bucket="despliegue3-bucket",S3Key="my-app.zip"
           aws elasticbeanstalk update-environment --application-name "Despliegue3" \
             --environment-name "Despliegue3-env" \
-            --version-label "v1"
+            --version-label "v1-${{ github.sha }}"
