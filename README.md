@@ -7,6 +7,12 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Alejo311548_consulta&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Alejo311548_consulta)
 [![Known Vulnerabilities](https://snyk.io/test/github/alejo311548/consulta/badge.svg)](https://snyk.io/test/github/alejo311548/consulta)
 
+Integranres
+* Alejandro Vargas
+* Angi Sirley Hoyos
+* Johana Sevillano
+* Mateo Herrera
+
 Implementation of a Simple App with the next operations:
 * Get random nations
 * Get random currencies
